@@ -1,41 +1,83 @@
 console.log("The extension is up and running")
 
-var arr =document.getElementsByClassName("s-code-block")
+// ==UserScript==
+// @name         TDX Browser Scripts
+// @namespace    http://tampermonkey.net/
+// @version      2025-05-22
+// @description  Consolidated script of multiple extended features for Team Dynamix
+// @author       ajtaylor@alaska.edu
+// @author       ccelardo@alaska.edu
+// @match        https://service.alaska.edu/TDNext/*
+// @icon         https://www.google.com/s2/favicons?sz=64&domain=teamdynamix.com
+// @grant        none
+// ==/UserScript==
 
-for(let i = 0 ; i < arr.length ; i++){
- var btn = document.createElement("button")
- btn.classList.add("copy_code_button")
- btn.appendChild(document.createTextNode("Copy"))
- arr[i].appendChild(btn)
- btn.style.position = "relative"
- 
- if(arr[i].scrollWidth === arr[i].offsetWidth && arr[i].scrollHeight === arr[i].offsetHeight)
-  btn.style.left = `${arr[i].offsetWidth - 70}px`
+// Define the Features
+const scriptFeatures = {
+	darkMode: false,
+	notifications: false,
+	autoSave: false
+};
 
-  else if(arr[i].scrollWidth != arr[i].offsetWidth && arr[i].scrollHeight === arr[i].offsetWidth)
-   btn.style.left = `${arr[i].offsetWidth - 200}px`
- else 
-   btn.style.left = `${arr[i].offsetWidth - 150}px`
+// select the DOM object to locate the feature menu
+const divTdxDashboardToolbarRt = document.getElementsByClassName("tdbar-settings");
+
+// on initial load, create and populate the menu
+let divScriptFeatureMenu = createDivForMenu();
+divScriptFeatureMenu.appendChild(createSelectForMenu());
+
+divTdxDashboardToolbarRt[0].firstElementChild.prepend(divScriptFeatureMenu);
+
+populateScriptFeatureMenu();
 
 
- 
- if(arr[i].scrollHeight === arr[i].offsetHeight)
-   btn.style.bottom = `${arr[i].offsetHeight - 50}px`
-   
- else
-   btn.style.bottom = `${arr[i].scrollHeight - 50}px`
-   
-   console.log("Appended")
+/***************************
+* FUNCTIONS
+**************************/
+
+// create the div for the menu
+function createDivForMenu() {
+	let divObj = document.createElement("div");
+		divObj.className = "gutter-right-sm pull-left";
+		// divScriptFeatureMenu.style = "";
+		
+		return divObj;
+	}
+
+// create the script feature menu
+function createSelectForMenu() {
+	let selectObj = document.createElement("select");
+	selectObj.id = "tdxScriptFeatureMenu";
+	selectObj.addEventListener("change", toggleFeature);
+	
+	return selectObj;
 }
 
-console.log(arr[0].childNodes[0].innerText)
+// populate the script feature menu
+function populateScriptFeatureMenu() {
+	const menu = document.getElementById('tdxScriptFeatureMenu');
+	menu.innerHTML = '';
 
+	// Add default label option
+	const defaultOption = document.createElement('option');
+	defaultOption.textContent = 'Toggle TDX User Script Features';
+	defaultOption.disabled = true;
+	defaultOption.selected = true;
+	menu.appendChild(defaultOption);
 
- var button = document.querySelectorAll(".copy_code_button")
- button.forEach((elm)=>{
-  elm.addEventListener('click',(e)=>{
-    navigator.clipboard.writeText(elm.parentNode.childNodes[0].innerText)
-    alert("Copied to Clipboard")
-  })
- })
+	// Add feature options
+	for (const [feature, isEnabled] of Object.entries(scriptFeatures)) {
+		const option = document.createElement('option');
+		option.value = feature;
+		option.textContent = `${feature} (${isEnabled ? 'ON' : 'OFF'})`;
+		menu.appendChild(option);
+	}
+}
 
+// toggle the script features, both in the menu, and the scriptFeatures array
+function toggleFeature(event) {
+	let featureName = event.target.value;
+	scriptFeatures[featureName] = !scriptFeatures[featureName];
+	console.log(`${featureName} is now ${scriptFeatures[featureName] ? 'ENABLED' : 'DISABLED'}`);
+	populateScriptFeatureMenu();
+}
