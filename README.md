@@ -1,18 +1,18 @@
 # TSC Browser Extension (Pre-Alpha)
 Fork of the [Copy-Code browser extension by Abhilekh Gautam](https://github.com/Abhilekhgautam/Copy-Code), and [accompanying article on freeCodeCamp](https://www.freecodecamp.org/news/write-your-own-browser-extensions/).
 
-# Purpose
+## Purpose
 Explore moving the User Scripts into a custom browser extension
 
-# Original Copy-Code README
+## Original Copy-Code README
 
 This is a code repository for the Browser extension which allows us to copy any code snippet from stackoverflow in a single click. If you want to learn how to write this , I have everything covered for you in this article : [https://www.freecodecamp.org/news/write-your-own-browser-extensions/](https://www.freecodecamp.org/news/write-your-own-browser-extensions/)
 
-# Compatibility
+## Compatibility
 
 Works in all browsers
 
-# Usage
+## Usage
 
 To use this extension locally in your machine.
 
