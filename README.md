@@ -13,7 +13,10 @@ Explore moving the User Scripts into a custom browser extension
 * [Pack extension](https://developer.chrome.com/docs/extensions/how-to/distribute/host-on-linux#create)
 
 ## Notes
-23 May (ajtayloruofa) - Need to clone this into a private repo.
+23 May (ajtayloruofa)
+* Need to clone this into a private repo.
+* [create toggle switches](https://www.w3schools.com/howto/howto_css_switch.asp)
+
 
 ## Original Copy-Code README
 
