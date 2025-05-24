@@ -1,6 +1,9 @@
 # TSC Browser Extension (Pre-Alpha)
 Fork of the [Copy-Code browser extension by Abhilekh Gautam](https://github.com/Abhilekhgautam/Copy-Code), and [accompanying article on freeCodeCamp](https://www.freecodecamp.org/news/write-your-own-browser-extensions/).
 
+## Purpose
+Explore moving the User Scripts into a custom browser extension
+
 ## Add-on/Extension Distribution
 ### Firefox
 * Packaging - Zip using deflate compression. Rename file extension from .zip to .xpi
@@ -9,8 +12,8 @@ Fork of the [Copy-Code browser extension by Abhilekh Gautam](https://github.com/
 ### Chrome
 * [Pack extension](https://developer.chrome.com/docs/extensions/how-to/distribute/host-on-linux#create)
 
-## Purpose
-Explore moving the User Scripts into a custom browser extension
+## Notes
+23 May (ajtayloruofa) - Need to clone this into a private repo.
 
 ## Original Copy-Code README
 
